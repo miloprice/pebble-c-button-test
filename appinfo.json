@@ -1,0 +1,18 @@
+{
+    "versionLabel": "1.0",
+    "uuid": "0d73c240-aadc-4a06-8507-507993ebeb8b",
+    "appKeys": {},
+    "longName": "CButtTest",
+    "versionCode": 1,
+    "capabilities": [
+        ""
+    ],
+    "shortName": "CButtTest",
+    "companyName": "miloprice",
+    "watchapp": {
+        "watchface": false
+    },
+    "resources": {
+        "media": []
+    }
+}
