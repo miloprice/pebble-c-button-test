@@ -3,6 +3,33 @@
 Window* window;
 TextLayer *text_layer;
  
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+/* Handlers for button clicks; these are used in init() */
+void up_click_handler(ClickRecognizerRef recognizer, void *context)
+{
+	text_layer_set_text(text_layer, "You pressed UP!");
+}
+ 
+void down_click_handler(ClickRecognizerRef recognizer, void *context)
+{
+	text_layer_set_text(text_layer, "You pressed DOWN!");
+}
+ 
+void select_click_handler(ClickRecognizerRef recognizer, void *context)
+{
+ 	text_layer_set_text(text_layer, "You pressed SELECT!");
+}
+
+void click_config_provider(void *context)
+{
+    window_single_click_subscribe(BUTTON_ID_UP, up_click_handler);
+    window_single_click_subscribe(BUTTON_ID_DOWN, down_click_handler);
+    window_single_click_subscribe(BUTTON_ID_SELECT, select_click_handler);
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 /* Load all Window sub-elements */
 void window_load(Window *window)
 {
@@ -19,7 +46,8 @@ void window_unload(Window *window)
 {
     text_layer_destroy(text_layer);
 }
- 
+
+
 /* Initialize the main app elements */
 void init()
 {
@@ -29,6 +57,7 @@ void init()
         .unload = window_unload
     };
     window_set_window_handlers(window, (WindowHandlers) handlers);
+	window_set_click_config_provider(window, click_config_provider); // Step 5
     window_stack_push(window, true);
 }
  
